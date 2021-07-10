@@ -1,0 +1,56 @@
+    
+def main(initState):
+    print("\n\n\n▬▬▬▬▬▬MAIN▬MENU▬▬▬▬▬▬\nWelcome to the school management system!\nHere you can access the database for student and teacher information,\nOr you may ask me a Python related question and I will answer right away!")
+    init
+    if initState == 1:
+        time.sleep(3)
+    print("\n\nPlease enter '1' to manage the database\nEnter '2' to use the Chat Bot for asking Python related questions\nEnter '0' to exit")
+    #input
+    user_selection = input("Enter a number from 0 to 2 here → ")
+    while user_selection != "1" and user_selection != "2" and user_selection != "0" and user_selection != "encrypt" and user_selection != "decrypt":
+        error_input()
+        time.sleep(0.5)
+        user_selection = input("\nEnter only 0 to 2 here → ")
+    #accessing parts
+    if user_selection == "1":
+        print("You have accessed the database")
+        global dAccess
+        dAccess = 0
+        database()
+    elif user_selection == "2":
+        print("You have accessed the chat bot")
+        chatbot()
+    elif user_selection == "decrypt": #sneaky sneaky
+        print("file has been decrypted")
+        time.sleep(0.5)
+        decryption()
+        main(0)
+    elif user_selection == "encrypt": #SNEEEEEEAKY FUNCTION 
+        print("file has been encrypted")
+        time.sleep(0.5)
+        encryption()
+        main(0)
+    else:
+        print("See you next time")
+        raise SystemExit
+
+#execution
+if os.path.exists("profile.txt"):
+    fh = open("profile.txt", "r")
+else:
+    fh = open("profile.txt", "w+")
+stuff = ["bruh"]
+stuff = (fh.read()).splitlines()
+fh.close()
+if stuff == []:
+    init()
+    fh = open("profile.txt", "r")
+    stuff = (fh.read()).splitlines()
+thatline = ""
+thatline = stuff[0]
+if thatline[-1] == "a":
+    print("NOTE: FILE HAS BEEN AUTOMATICALLY ENCRYPTED AS IT WAS LEFT DECRYPTED")
+    encryption()##ENSURE IT STAYS ENCRYPTED
+    
+main(1)
+
