@@ -1,0 +1,152 @@
+"""
+School management system, Ritchie Yapp (leader - user interface, encryption and decryption, additional security), Thaddeus hooi (database amend and delete), Eleazar Chee (database create and search), Jia En (FAQ section)
+"""
+
+import random
+import base64
+import time
+import os.path
+
+encryption_data = ""
+dafinal = ""
+useless_input = ""
+newstrink = ""
+newestString = ""
+
+
+#ENCRYPTS ALL DATA INSIDE A TEXT FILE STORING DATA
+#THE FUNCTION HASHES THE PLAIN TEXT BY REARRANGING CHARACTERS BY A RANDOMLY GENERATED LIST OF INDEXES
+#THIS IS FOLLOWED BY USING base64 TO MAKE THE APPENDED LIST OF INDEXES AND PERPENDED REARRANGED DATA STRING UNREADABLE AND THEREFORE HARD TO REVERSE
+#A THIRD ENCRYPTION METHOD IS USED IN THE EVENT THAT ANY INTRUDERS CAN SEE THAT IT USES A base64 ENCRYPTION
+#THE THIRD ENCRYPTION METHOD USES CEASAR CIPHER, THE SHIFTING OF ASCII CHARCTERS BY RANDOM INDEX WHICH IS APPENDED AT THE END SO THAT IT IS REVERSABLE BY DECRYPTION
+
+
+#generate random algorithm
+def generate_alg(encryption_data):
+    encryption_alg = []
+    while len(encryption_alg) != len(encryption_data):##repeat until full width 
+        random_number = None #0 makes the below statements equate to true
+        while random_number not in encryption_alg:
+            random_number = random.randint(0, len(encryption_data)-1)
+            if random_number not in encryption_alg:
+                encryption_alg.append(random_number)##append only if the number is not repeated
+    return encryption_alg
+    
+
+
+def encryption():
+    appendinglist = []
+    encryptiondata = "-"
+    fh = open("profile.txt", "r+")
+    encryptionbata = fh.readlines()
+    fh.close()
+    for x in range(len(encryptionbata)):
+        encryption_data = encryptionbata[x]
+        random_number = 0
+        new_data = 0
+        
+        #random algorithm           
+        original_alg = []
+        encryption_alg = original_alg
+        for x in range(len(encryption_data)):
+            original_alg.append(x) ##to check its actually rearranged
+        if len(encryption_data) > 1: ##impossible to rearrange len(1)    
+            while original_alg == encryption_alg: #if both algs are the same
+                encryption_alg = generate_alg(encryption_data)
+        #string slicing--------------------------------E
+        new_data = ""
+        read_string = 0
+        for x in range(len(encryption_data)): #write new string with rearranged 
+            new_data += encryption_data[encryption_alg[x]]  
+        for x in range(len(encryption_data)):
+            new_data += str(encryption_alg[x])
+            new_data += ","
+            read_string += len(str(encryption_alg[x])) + 1  
+        new_data += "."
+        new_data += str(read_string)#for reading the algorithm properly
+
+        #b64---------------------------------------------------E
+        enc_byte = 0
+        enc_byte = base64.b64encode(new_data.encode("utf-8"))#convert to type bytes
+        enc_str = 0
+        encodedString = str(enc_byte, "utf-8")#convert to type str (utf-8 encoding required to avoid any exceptions for chars bigger than 0x7F)
+        #caesar------------------------------------------------E
+        newString = ""
+        newstrink = ""
+        global appendingstring
+        randomno = random.randint(-5,5) #index difference
+        for x in range(len(encodedString)):
+            letter = encodedString[x]
+            newString += chr(ord(letter) + randomno)
+        newstrink = newString + str(randomno) + str(len(str(randomno)))
+        appendinglist.append(newstrink)
+    appendingstring = "\n".join(appendinglist)
+
+    fh = open("profile.txt", "w")
+    fh.write(appendingstring)
+    fh.close()
+
+#THIS FUNCTION IS TO DECRYPT ALL STORED DATA TO BE READ AND OUTPUT AS READABLE PLAIN TEXT
+#THIS REVERSES THE ALGORITHM USED IN encryption()
+    
+def decryption():
+    fh = open("profile.txt", "r+")
+    apple = ""
+    store = fh.readlines()
+    fh.close()
+    for x in range(len(store)):
+        newstrink = store[x]
+        #caesar-----------------------------------------------D
+        newestString = ""
+        slicingindex = 0
+        if newstrink[-1] == "\n":
+            slicingindex = int(newstrink[-2])
+            randomno = int(newstrink[-2-slicingindex:-2])##based on slicing index determines offset
+            for x in range(len(newstrink[:-2-slicingindex])):
+                letter = newstrink[x]
+                newLetter = chr(ord(letter) - randomno) ##generates new letter by changing ascii
+                newestString += newLetter ##appends new letter to string
+        else:
+            slicingindex = int(newstrink[-1])
+            randomno = int(newstrink[-1-slicingindex:-1])
+            for x in range(len(newstrink[:-1-slicingindex])):
+                letter = newstrink[x]
+                newLetter = chr(ord(letter) - randomno) ##generates new letter by changing ascii
+                newestString += newLetter ##appends new letter to string
+        #b64------------------------------------------------D
+        n3wstring = ""
+        bruhstring = ""
+        bruhstring = base64.standard_b64decode(newestString)##data in type bytes
+        n3wstring = str(bruhstring, "utf-8")##data in type str
+
+        #stringslicing----------------------------------------D
+        dafinal = "" ##final decrypted data
+        read_pos = 0 ##this variable reads the length of the algorithm to determine extract_pos
+        extract_pos = 0 ##this position divides the algorithm and data
+        string_alg = "" ##the extracted slicing algorithm in type str
+        the_other = 0 ##half of the string to extract data or algorithm
+        the_other = int(len(n3wstring) / 2)
+        ##extract algorithm
+        appending_no = ""##transferring data from type str to list
+        read_pos = n3wstring.index(".", the_other)
+        extract_pos = 0 - int(n3wstring[read_pos+1:]) - len(n3wstring[read_pos+1:]) - 1   
+        string_alg = n3wstring[extract_pos:- len(n3wstring[read_pos+1:]) - 1]   
+        string_index = [] ##algorithm in type list
+        for x in range(len(str(string_alg))):
+            if string_alg[x].isdigit():
+                appending_no += string_alg[x]
+            else:
+                string_index.append(appending_no)##once it reaches the comma it appends the number 
+                appending_no = ""
+        pos = 0
+        for x in range(len(string_index)):
+            ##find the proper letter
+            pos = string_index.index(str(x))
+            ##append the letter
+            dafinal += n3wstring[pos]
+        apple += dafinal
+    fh = open("profile.txt", "w")
+    fh.write(apple)
+    fh.close()
+
+  
