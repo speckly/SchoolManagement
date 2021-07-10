@@ -1,0 +1,297 @@
+
+#CHATBOT (FAQ SECTION) IS MAINLY DONE BY ANOTHER COLLABORATING STUDENT -- CHIA JIA EN
+
+def chatbot():
+    import time
+    siri=0
+    def error_input():
+        time.sleep(1)
+        print("Sorry! Chat Bot can't identify what u wish to ask.\n Please enter again!")
+    def return_chatbot():
+        time.sleep(1)
+        print("\nReturning back to chatbot...\n")
+        time.sleep(1)
+        main_menu()
+    def general_return():
+        time.sleep(1)
+        print("\nReturning to general FAQ\n")
+        time.sleep(1)
+        general_faq()
+    
+    def general_faq():
+        uno = 0
+        print("\nCoding school Chat Bot\n----------------------\n\n\nYou have picked General Python FAQs!\nHere are some examples of the questions you can ask about General Python:\n-what is idle?\n-what can we do with coding?\netc...")
+        siri=input("\nWhat is your question? ")
+        while all(x.isalpha() or x.isspace() for x in siri):
+            uno += 1
+            s=siri.split()
+            for x in range(len(s)):
+                s[x] = s[x].lower()
+                print(s)
+            if ('coding' or 'code' or 'codes') in s == True:
+                print("answer: coding is the process of using codes to program the computer to execute what you want it to do, and you can make software,websites,mobile apps and more…")
+                uno = 1
+                general_return()
+            elif 'work' in s or 'function' in s:
+                print("answer: use programming language.")
+                uno = 1
+                general_return()
+            elif 'idle' in s == True:
+                print("answer: A software for building applications that combines common developer tools into a single graphical user interface, usually for learning purposes")
+                uno = 1
+                general_return()
+            elif ('key' in s) or ('features' in s) or ('key' in s and 'features' in s):
+                print("answer:1.writing python is way faster than other compiled languages.\n2.Python is also suitable for object orientated programming.\n3.Python always you to declare any types of variables whatever you like.\n4.Python iw an interpreted language that does not need to be compiled before it is run.")
+                uno = 1
+                general_return()
+            elif ('language' in s) or ('programming' in s) or ('scripting' in s):
+                print("answer:Python is capable of scripting, it is considered as a general-purpose programming language.")
+                uno = 1
+                general_return()
+            elif 'back' in s or 'exit' in s or 'return' in s:
+                return_chatbot()
+            else:
+                error_input()
+                time.sleep(1)
+                general_faq()
+                if uno != 1:
+                    for x in range(s):
+                        if 'code' in s or 'mean' in s or 'codes' in s or 'meaning' in s:
+                            print("1.answer: coding is the process of using codes to program the computer to execute what you want it to do.")                                    
+                        elif 'work' in s or 'function' in s:
+                            print("2.answer: use programming language.")
+                        elif 'define' in s or 'idle' in s or 'mean' in s:
+                            print("3.answer: Idle is Python’s Integrated Development and Learning Environment, providing editing,running and testing codes.")
+                            general_return()
+                        elif 'back' in s or 'exit' in s or 'return' in s:
+                            return_chatbot()
+                        else:
+                            general_faq()
+                    
+        else:
+            error_input()
+            time.sleep(1)
+            general_faq()
+
+    def programming_return():
+        uno = 0
+        time.sleep(1)
+        print("\nReturning back to programming FAQ\n")
+        time.sleep(1)
+        programming_faq()
+
+    def programming_faq():
+        uno = 0
+        print("\nCoding school Chat Bot\n----------------------\nYou have picked Programming FAQs!")
+        siri=input("What is your question? ")
+        while all(x.isalpha() or x.isspace() for x in siri):
+            uno += 1
+            s=siri.split()
+            for answer in s:
+                if ('errors' in s) or ('wrong') in s:
+                    print("1.answer: logical errors,syntax errors,semantic errors.")
+                    uno = 1
+                    programming_return()
+                elif ('syntax' in s and 'errors' in s) or ('syntax' in s):
+                    print("2.answer: syntax error is typos, incorrect indentation, or incorrect arguments.")
+                    uno = 1
+                    programming_return()
+                elif ('capital' in s):
+                    print("3.answer: python idle is case-sensitive thus all must be lowercase or all must be uppercase.")
+                    uno = 1
+                    programming_return()
+                elif ('output' in s) or ('show' in s):
+                    print("4.answer: use print() and type in brackets what u wish to output.")
+                    uno = 1
+                    programming_return()
+                elif 'spacing' in s or 'spacings' in s or 'spaces' in s:
+                    print("5.answer: use underscores instead")
+                    uno = 1
+                    programming_return()
+                elif 'names' in s or 'value' in s:
+                    print("6.answer: assign it as a variable or constant using ‘=’")
+                    uno = 1
+                    programming_return()
+                elif 'different lines' in s or 'different' in s or 'separate' in s:
+                    print("7.answer: use ‘/n’ into your print()")
+                    uno = 1
+                    programming_return()
+                elif 'convert' in s or 'change' in s or 'different data type' in s:
+                    print("8.answer: use type(int(“”))")
+                    uno = 1
+                    programming_return()
+                elif 'range' in s:
+                    print("9.answer: use range() and type the range of numbers you would like to use or use ‘for i in range(x):’ i is a variable and x is the range of numbers")
+                    uno = 1
+                    programming_return()
+                elif 'input' in s or 'enter' in s:
+                    print("10.answer: use input() and type what u wish to input into the brackets")
+                    uno = 1
+                    programming_return()
+                elif 'length' in s or 'number of letters' in s:
+                    print("11.answer: use len() and type in the brackets the word or number")
+                    uno = 1
+                    programming_return()
+                elif 'make list' in s or 'make a list' in s:
+                    print("12.answer: use list=[] and type in the brackets")
+                    uno = 1
+                    programming_return()
+                elif 'equals' in s:
+                    print("14.answer: use ‘==’ to show that two values that are equivalence True and False when they are not equivalence")
+                    uno = 1
+                    programming_return()
+                elif ('not' in s and 'equal' in s) or ('not' in s and 'equals' in s) == True:
+                    print("15.answer: use ‘!=’ to show that two values that are not equivalence True and False when they are equivalence")
+                    uno = 1
+                    programming_return()
+                elif 'math' in s:
+                    print("16.answer:before using the operators, type in ‘input math’ at line 1. ‘+’ to add, ‘-’ to subtract, ’’ to multiply, ‘/’ to divide, ‘//’ to get the value after dividing rounded down to nearest integer, ‘*’ to get the power of the value, ‘%’ to get the remainder of a divided value.")
+                    uno = 1
+                    programming_return()
+                elif 'back' in s or 'exit' in s:
+                    uno = 1
+                    return_chatbot()
+            else:
+                error_input()
+                time.sleep(1)
+                programming_faq()
+                if uno != 1:
+                    for x in range(s):
+                        if 'error' in s or 'wrong' in s or 'incorrect' in s:
+                            print("1.answer: logical errors,syntax errors,semantic errors.")
+                            programming_return()
+                        elif 'syntax' in s:
+                            print("2.answer: syntax error is typos, incorrect indentation, or incorrect arguments.")
+                            programming_return()
+                        elif 'capital' in s or 'caps' in s:
+                            print("3.answer: python idle is case-sensitive thus all must be lowercase or all must be uppercase.")
+                            programming_return()
+                        elif 'output' in s:
+                            print("4.answer: use print() and type in brackets what u wish to output.")
+                            programming_return()
+                        elif 'spacing' in s or 'spacings' in s or 'spaces' in s or 'space' in s:
+                            print("5.answer: use underscores instead")
+                            programming_return()
+                        elif 'name' in s or 'value' in s:
+                            print("6.answer: assign it as a variable or constant using ‘=’")
+                            programming_return()
+                        elif 'differ' in s or 'separate' in s:
+                            print("7.answer: use ‘/n’ into your print()")
+                            programming_return()
+                        elif 'convert' in s or 'change' in s or 'differ' in s:
+                            print("8.answer: use type(int(“”))")
+                            programming_return()
+                        elif 'range' in s:
+                            print("9.answer: use range() and type the range of numbers you would like to use or use ‘for i in range(x):’ i is a variable and x is the range of numbers")
+                            programming_return()
+                        elif 'input' in s or 'enter' in s:
+                            print("10.answer: use input() and type what u wish to input into the brackets")
+                            programming_return()
+                        elif 'length' in s or 'number' in s or 'amount' in s:
+                            print("11.answer: use len() and type in the brackets the word or number")
+                            programming_return()
+                        elif 'make' in s or 'list' in s:
+                            print("12.answer: use list=[] and type in the brackets")
+                            programming_return()
+                        elif 'equal' in s or 'equals' in s:
+                            print("14.answer: use ‘==’ to show that two values that are equivalence True and False when they are not equivalence")
+                            programming_return()
+                        elif 'not equal' in s or 'not equals' in s:
+                            print("15.answer: use ‘!=’ to show that two values that are not equivalence True and False when they are equivalence")
+                            programming_return()
+                        elif 'math' in s:
+                            print("16.answer:before using the operators, type in ‘input math’ at line 1. ‘+’ to add, ‘-’ to subtract, ’’ to multiply, ‘/’ to divide, ‘//’ to get the value after dividing rounded down to nearest integer, ‘*’ to get the power of the value, ‘%’ to get the remainder of a divided value.")
+                            programming_return()
+                        elif 'back' in s or 'exit' in s or 'return' in s:
+                            return_chatbot()
+                        else:
+                            general_faq()
+                        
+        else:
+            error_input()
+            time.sleep(1)
+            programming_faq()
+
+        
+    def dnh_return():
+        time.sleep(1)
+        print("\nReturning back to design and history FAQ\n")
+        time.sleep(1)
+        dnh_faq()  
+
+    def dnh_faq():
+        uno = 0
+        print("Coding school Chat Bot\n------------------------------\nYou have picked Design & History FAQs!")
+        siri=input("What is your question?")
+        while all(x.isalpha() or x.isspace() for x in siri):
+            uno += 1
+            s=siri.split()
+            for answer in s:
+                if 'loops' in s:
+                    print("1.answer: ‘for_in:’ loop and ‘while__:’ loop")
+                    uno = 1
+                    dnh_return()
+                elif 'decisions' in s or 'asks' in s:
+                    print("2.answer: use if-elif-else to make decisions")
+                    uno = 1
+                    dnh_return()
+                elif 'comma' in s or 'commas' in s:
+                    print("Python allows you to add commas at the end of list and tuples,\n[1, 2, 3,]\n('a', 'b', 'c',)\nd = {\n    'A': [1, 5],\n    'B': [6, 7],\n}")
+                    uno = 1
+                    dnh_return()
+                elif 'back' in s or 'exit' in s or 'return' in s:
+                    return_chatbot()
+            else:
+                error_input()
+                time.sleep(1)
+                dnh_faq()
+                if uno != 1:
+                    for x in range(s):
+                        if 'loops' in s or 'loop' in s:
+                            print("1.answer: ‘for_in:’ loop and ‘while__:’ loop")
+                            dnh_return()
+                        elif 'decisions' in s or 'asks' in s or 'decision' in s or 'ask' in s:
+                            print("2.answer: use if-elif-else to make decisions")
+                            dnh_return()
+                        elif 'exit' in s or 'back' in s or 'return' in s:
+                            return_chatbot()
+                        else:
+                            dnh_faq()
+                    
+        else:
+            error_input()
+            time.sleep(1)
+            dnh_faq()
+                       
+    def main_menu():
+        menu_selection = 0
+        print("Coding school Chat Bot\n----------------------\nHello this is Chat Bot, here to answer all the doubts and questions you have on coding!\n\n1. General Python FAQ\n2. Programming FAQ\n3. Design & History FAQ\n4. Exit\n")
+        menu_selection = input("Enter option:")
+        menu_range = 4
+        if menu_selection.isalpha()==True:
+            menu_selection=0
+            error_input
+        while 1 > int(menu_selection) or int(menu_selection) > menu_range:
+            error_input()
+            menu_selection = input("Enter option:")
+            #check
+            if menu_selection.isdigit() == False:
+                menu_selection = 0
+            if (1 > int(menu_selection) or int(menu_selection) > menu_range) == True:
+                error_input()
+        #process
+        if int(menu_selection) == 1:
+            time.sleep(1)
+            general_faq()
+        elif int(menu_selection) == 2:
+            time.sleep(1)
+            programming_faq()
+        elif int(menu_selection) == 3:
+            time.sleep(1)
+            dnh_faq()
+        elif int(menu_selection) == 4:
+            time.sleep(1)
+            print("Hope I have answered all your questions!\nexiting program...")
+            main(0)
+       
+    main_menu()
