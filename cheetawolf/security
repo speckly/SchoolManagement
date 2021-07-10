@@ -1,0 +1,198 @@
+
+#THIS IS THE INTERFACE TO PROVIDE THE USER PASSCODE AS PROVIDED IN THE FIRST TIME USE (when the database is empty)
+#THIS IS CALLED IN ORDER TO ACCESS THE DATABASE MENU --------------------------------------------------------------
+
+def security():
+    passcode = 0
+    print("\n\n\n▬▬▬▬▬SECURITY▬▬▬▬▬")
+    print("You are required to input your passcode")
+    passcode = input("\nInput your passcode (enter '0' to return, '1' to reset) → ")
+    decryption()
+    fh = open("profile.txt", "r")
+    store = fh.readlines()
+    fh.close()
+    encryption()
+    if passcode == "0": #exit
+        main(0)
+    if passcode == "1":
+        reset()
+        decryption()
+        fh = open("profile.txt", "r") #update new passcode variable
+        store = fh.readlines()
+        the = store[0][:-2] #stored passcode without \n
+        fh.close()
+        encryption()
+        passcode = input("\nInput your passcode (enter '0' to return, '1' to reset) → ")
+    the = store[0][:-2] #stored passcode without \n
+    if passcode != the:
+        print("\nYour passcode is incorrect")
+    while passcode != the:
+        time.sleep(0.5)
+        passcode = input("You are required to input the correct passcode (enter '0' to return, '1' to reset) → ")
+        if passcode != the:
+            print("\nYour passcode is incorrect")
+        if passcode == "0":
+            main(0)
+        if passcode == "1":
+            reset()
+            decryption()
+            fh = open("profile.txt", "r") #update new passcode variable
+            store = fh.readlines()
+            the = store[0] #stored passcode
+            the = the[:-2] #stored passcode without \n
+            fh.close()
+            encryption()
+            
+#initialization of passcode
+def init():
+    passcode = 0
+    question = 0
+    check = 0
+    requirements = 0
+    finalreq = 0
+    print("▬▬▬▬▬INITIALIZATION▬▬▬▬▬")
+    print("NOTE: Initialization is required for the first use, this will not be required until the data is reset")
+    while finalreq == 0: #ensure string is according to requirements
+        while requirements == 0:
+            death = 0
+            stop = 0 #prevents checking of other conditions if one is false
+            passcode = input("\nEnter a passcode consisting of at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 special character → ")
+            if len(passcode) < 8:
+                requirements = 0
+                stop = 1
+                print("Your passcode is below 8 characters, please try again")
+            if stop == 0:
+                death = 0
+                for x in range(len(passcode)):
+                    if passcode[x].isupper() == True:
+                        death += 1 #counts no of uppercase
+                if death == 0:
+                    print("Your passcode does not have an uppercase letter, please try again")
+                    requirements = 0
+                    stop = 1
+            if stop == 0:
+                death = 0
+                for x in range(len(passcode)):
+                    if passcode[x].islower() == True:
+                        death += 1 #counts no of lowercase
+                if death == 0:
+                    print("Your passcode does not have a lowercase letter, please try again")
+                    requirements = 0
+                    stop = 1   
+            if stop == 0:
+                death = 0
+                for x in range(len(passcode)):
+                    if passcode[x].isalnum() == False:
+                        death += 1 #counts no of special
+                if death == 0:
+                    print("Your passcode does not have a special character, please try again")
+                    requirements = 0
+                    stop = 1
+            if stop == 0:
+                requirements = 1
+                
+        question = input("\nPlease enter your security question to be printed in case you forget your passcode → ")
+        answer = input("\nPlease enter your answer to the security question → ")
+        print("\n\n\nConfirm your question is correct and the answer can be remembered? It cannot be resetted.")
+        print("Question: {}".format(question))
+        print("Answer: {}".format(answer))
+        check = input("Enter \'Y\' or \'N\' → ")
+        while (check[0] == "Y" or check[0] == "N" or check[0] == "y" or check[0] == "n") == False:
+            check = input("Enter \'Y\' or \'N\' ONLY→ ")
+        if check == "Y":
+            print("\n\n\nYour passcode has been saved, it is required to access the database\nYou will also need to input the security answer to the security question you have initialized earlier in case you forget your passcode")
+            time.sleep(3)
+            finalreq = 1
+        else:
+            requirements = 0
+                    
+    fh = open("profile.txt" , 'w')
+    fh.write(passcode + "a")
+    fh.write('\n')
+    fh.write(question)
+    fh.write('\n')
+    fh.write(answer)
+    fh.close()
+    encryption()
+
+
+    
+def reset():
+    global store
+    leanswer = ""
+    newasscode = ""
+    ugh = 0
+    requirements = 0
+    ANOTHER = 0
+    decryption()
+    fh = open("profile.txt", "r")
+    store = fh.readlines()
+    fh.close()
+    encryption()
+    stringH = ""
+    stringH = store[1]
+    stringH = stringG[:-1]
+    print("\nYou will now answer your security question to reset your passcode")
+    print("Question → ", stringH)
+    stringH = store[2]
+    if stringH[-1] == "\n":
+        stringh = stringh[:-1]
+    while ugh == 0:
+        leanswer = input("\nAnswer (enter 0 to exit) → ")
+        if leanswer == stringH:
+            while ugh == 0:
+                requirements = 0
+                while requirements == 0:
+                    death = 0
+                    stop = 0 #prevents checking of other conditions if one condition equates to  false
+                    newasscode = input("\nEnter a passcode consisting of at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 special character → ")
+                    if len(newasscode) < 8:
+                        requirements = 0
+                        stop = 1
+                        print("Your passcode is below 8 characters, please try again")
+                    if stop == 0:
+                        death = 0
+                        for x in range(len(newasscode)):
+                            if newasscode[x].isupper() == True:
+                                death += 1 #counts no of uppercase
+                        if death == 0:
+                            print("Your passcode does not have an uppercase letter, please try again")
+                            requirements = 0
+                            stop = 1
+                    if stop == 0:
+                        death = 0
+                        for x in range(len(newasscode)):
+                            if newasscode[x].islower() == True:
+                                death += 1 #counts no of lowercase
+                        if death == 0:
+                            print("Your passcode does not have a lowercase letter, please try again")
+                            requirements = 0
+                            stop = 1   
+                    if stop == 0:
+                        death = 0
+                        for x in range(len(newasscode)):
+                            if newasscode[x].isalnum() == False:
+                                death += 1 #counts no of special
+                        if death == 0:
+                            print("Your passcode does not have a special character, please try again")
+                            requirements = 0
+                            stop = 1
+                    if stop == 0:
+                        requirements = 1
+                print("\n\n\nIs this your correct passcode? ", newasscode)
+                check = input("Enter \'Y\' or \'N\' → ")
+                while (check.upper()[0] == "Y" or check.upper()[0] == "N") == False:
+                    check = input("Enter \'Y\' or \'N\' ONLY → ")
+                if check == "Y":
+                    store[0] = newasscode + "a" + "\n"
+                    ugh = 1
+        else:
+            if leanswer == "0":
+                main(0)
+            print("Your answer is incorrect, do again")
+    fh = open("profile.txt", "w")
+    decryption()
+    for x in range(len(store)):
+        fh.write(store[x])
+    fh.close()
+    encryption()
