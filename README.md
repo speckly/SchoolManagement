@@ -50,4 +50,5 @@ There cannot be any duplicate students of the same class and index number
 The data can be accessed later on 
 #### Refer to sample decrypted data for screenshot of searched data (unchanged)
 
-
+# Using this program
+You may download ```BUSINESS_MANAGEMENT.py``` and run it as long as you have Python installed
