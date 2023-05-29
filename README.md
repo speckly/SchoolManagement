@@ -2,11 +2,16 @@
 This README is written by Andrew Higgins
 
 SchoolManagement is a program developed by 4 first-year GCE Ordinary Level Computing students for teachers to create and access student information in a database, and for students to access programming FAQ.
+
+#Details
 This program utilizes a UTF-8 text file to create student information, accessing a student's information while being able to amend or delete it.
 Access to the database requires a passcode, to prevent unauthorized access.
 The text file is also encrypted using 3 methods. (String indexing, Base64 encoding, Caesar's cipher or ASCII shifting)
 The text file is decrypted into plain text while an authorized user is using the database
 A student FAQ is included to answer student FAQs on Python (does not require any authentication)
+
+# Author's note 2023
+There is so much bad code and unnecessary screaming comments as loud as SQL. I want to preserve this code just for keepsake on the time I was learning software development and managing other people in such projects.
 
 # Security, data encryption - by Andrew Higgins (me)
 A security passcode is required to be set should the program be used for the first time (case when file does not exist)
