@@ -1,5 +1,8 @@
 """
-School management system, Ritchie Yapp (leader - user interface, encryption and decryption, passcodes and reset), Thaddeus hooi (database amend and delete), Eleazar Chee (database create and search), Jia En (FAQ section)
+School management system, Andrew Higgins (leader - user interface, encryption and decryption, passcodes and reset),  
+Person 4 (database amend and delete), 
+Person 3 (database create and search), 
+Person 2 (FAQ section)
 """
 
 import random
