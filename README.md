@@ -1,14 +1,14 @@
 # About 
-This README is written solely by Ritchie Yapp 
+This README is written by Andrew Higgins
 
-SchoolManagement is a program developed by 4 first-year Computing students for teachers to create and access student information in a database, and for students to access programming FAQ.
+SchoolManagement is a program developed by 4 first-year GCE Ordinary Level Computing students for teachers to create and access student information in a database, and for students to access programming FAQ.
 This program utilizes a UTF-8 text file to create student information, accessing a student's information while being able to amend or delete it.
 Access to the database requires a passcode, to prevent unauthorized access.
-The text file is also encrypted using 3 methods. (String indexing, Base64, Caesar's cipher or ASCII shifting)
+The text file is also encrypted using 3 methods. (String indexing, Base64 encoding, Caesar's cipher or ASCII shifting)
 The text file is decrypted into plain text while an authorized user is using the database
 A student FAQ is included to answer student FAQs on Python (does not require any authentication)
 
-# Security, data encryption - by Ritchie Yapp (me)
+# Security, data encryption - by Andrew Higgins (me)
 A security passcode is required to be set should the program be used for the first time (case when file does not exist)
 A security question is also required to be set during this initialization which is needed to be answered in the event the authenticated user forgets their password
 
@@ -33,12 +33,12 @@ The encryption function will be called when the user exits a function in the dat
 - The text file is not stored in a secure location, it can be deleted by an intruder. The intruder can also set a new password without authorization.
 - Any interrupts before ```encryption()``` is called might expose database information in plain text. (calling ```decryption()``` while in plain text will return the same plain text)
 
-# Chatbot - Chia Jia En
+# Chatbot - Person 2
 The chatbot will print out a menu that students can navigate to find their FAQ section 
 The chatbot will answer the questions students have on programming based on keywords from their input
 ![chatbot](https://user-images.githubusercontent.com/60218942/125153978-1345a580-e18a-11eb-88ea-0fd67797416f.PNG)
 
-# Database - Thaddeus Hooi/Eleazar Chee 
+# Database - Person3/4
 The database manages student information by creating, searching, amending and deleting
 
 #### This is how data is created (using the same set of data in a single run)
