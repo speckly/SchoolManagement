@@ -11,7 +11,7 @@ The text file is decrypted into plain text while an authorized user is using the
 A student FAQ is included to answer student FAQs on Python (does not require any authentication)
 
 # Author's note 2023
-There is so much bad code and unnecessary screaming comments as loud as SQL. I want to preserve this code just for keepsake on the time I was learning software development and managing other people in such projects.
+There is so much bad code and unnecessary screaming comments as loud as SQL. I want to preserve this code just so that I can remember the time I was learning software development and managing other people in such projects.
 Also, I did not know anything about cryptography back then. So much for me being proud of my "unbreakable" encryption because it had 3 layers of ciphers (one transposition where key is obvious, one encoding cipher, one classical cipher... SMH)
 
 # Security, data encryption - by Andrew Higgins (me)
