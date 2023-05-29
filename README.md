@@ -3,7 +3,7 @@ This README is written by Andrew Higgins
 
 SchoolManagement is a program developed by 4 first-year GCE Ordinary Level Computing students for teachers to create and access student information in a database, and for students to access programming FAQ.
 
-###Date of completion: July/August 2020
+### Date of completion: July/August 2020
 
 #Details
 This program utilizes a UTF-8 text file to create student information, accessing a student's information while being able to amend or delete it.
