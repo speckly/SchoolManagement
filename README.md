@@ -12,6 +12,7 @@ A student FAQ is included to answer student FAQs on Python (does not require any
 
 # Author's note 2023
 There is so much bad code and unnecessary screaming comments as loud as SQL. I want to preserve this code just for keepsake on the time I was learning software development and managing other people in such projects.
+Also, I did not know anything about cryptography back then. So much for me being proud of my "unbreakable" encryption because it had 3 layers of ciphers (one transposition where key is obvious, one encoding cipher, one classical cipher... SMH)
 
 # Security, data encryption - by Andrew Higgins (me)
 A security passcode is required to be set should the program be used for the first time (case when file does not exist)
