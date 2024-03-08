@@ -18,6 +18,10 @@ Also, I did not know anything about cryptography back then. So much for me being
 
 # Usage
 Minimum requirement is python > 2.7
+This is a single file project
+```bash
+python BUSINESS_MANAGEMENT.py
+```
 
 # Security, data encryption - by Andrew Higgins (me)
 A security passcode is required to be set should the program be used for the first time (case when file does not exist)
